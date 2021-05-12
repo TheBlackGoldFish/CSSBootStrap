@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ -->
+<style>
+/*
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+/*body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Style tab links */
+/*.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+/*.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+#Home {background-color: red;}
+#News {background-color: green;}
+#Contact {background-color: blue;}
+#About {background-color: orange;}
+*/
+
+</style>
+<script type="text/javascript">
+
+function changeColor(element, color)
+{
+	$(".nav-tabs > li a").css("background-color", "");
+	$(".nav-tabs > li a").css("color", "#337ab7");
+	$(element).css("background-color", color);
+	$(element).css("color", "white");
+}
+</script>
+</head>
+<body>
+<div id="menu">
+	<ul class="nav nav-tabs" style="margin-left:-5px;">
+    	<li><a href="#home" data-toggle="tab" onclick="changeColor(this, 'red')" style="margin-right:0px;">Home</a></li>
+        <li><a href="#news" data-toggle="tab" onclick="changeColor(this, 'green')" style="margin-right:0px;">News</a></li>
+        <li><a href="#contact" data-toggle="tab" onclick="changeColor(this, 'blue')" style="margin-right:0px;">Contact</a></li>
+        <li><a href="#about" data-toggle="tab" onclick="changeColor(this, 'orange')" style="margin-right:0px;">About</a></li>
+    </ul>
+    
+    <div class="tab-content" style="height:100%;margin-top:-20px;margin-left:-4px;">
+    	<div id="home" class="tab-pane fade" style="background-color:red;color:white;">
+        	<h3>Home</h3>
+            Home is where the heart is...
+        </div>
+        <div id="news" class="tab-pane fade" style="background-color:green;color:white;">
+        	<h3>News</h3>
+            Some news this fine day!
+        </div>
+        <div id="contact" class="tab-pane fade" style="background-color:blue;color:white;">
+        	<h3>Contact</h3>
+            Getin touch, or swing by for a cup of coffee.
+        </div>
+        <div id="about" class="tab-pane fade" style="background-color:orange;color:white;">
+        	<h3>About</h3>
+            Who we are and what we do.
+        </div>
+    </div>
+</div>
+
+   
+</body>
+</html> 

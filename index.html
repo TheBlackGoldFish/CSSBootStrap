@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name ="viewport" content="display=device-width"/>
+<title>Bird Conservation - Home</title>
+<link type="text/css" rel="stylesheet" href="Styles/style.css"/>
+<!-- FontAwesome required css file -->
+<link rel="stylesheet" href="Styles/all.css"/>
+<!-- Animate On Scroll(AOS) CSS file -->
+<link rel="stylesheet" href="Styles/aos.css"/>
+<link rel="shortcut icon" href="images/bird.ico"/>
+<!-- jQeury file -->
+<script src="Scripts/jquery-3.6.0.min.js"></script>
+<!-- Animate On Scroll(AOS) JS file -->
+<script src="Scripts/aos.js"></script>
+
+<script type="text/javascript">	
+	$(document).ready(function()
+	{
+		// Load home.html as default content and add active class to the link
+		$(".content").load("home.html");
+		$("#mainMenu li a:first").addClass("active");
+		// Scroll to top button
+		wnHeight = $(window).height();
+		//Check to see if the window is top if not then display button
+		$(window).scroll(function()
+		{
+			if ($(this).scrollTop() > wnHeight/2) 
+			{
+				$('.scroll-top').fadeIn();
+			} else 
+			{
+			   $('.scroll-top').fadeOut().removeClass('scrolling');
+			}
+		});
+	
+		//Click event to scroll to top
+		$(".scroll-top").click(function()
+		{
+			$("html, body").animate({scrollTop : 0},800);
+			$(this).addClass('scrolling');
+	
+		});
+		
+		$("#mainMenu li a").click(function(e)
+		{
+			e.preventDefault();
+			var current = $(this);			
+			//if (current.hasClass("dropdown-toggle") == false)
+			//{
+				$.ajax(
+				{					
+					url: $(this).attr("href"),
+					success: function(response) 
+					{
+						$(".content").html(response);										
+						$("#mainMenu li a.active").removeClass("active");
+						current.addClass("active");
+					},
+					error: function(jqXHR, textStatus, errorThrown) 
+					{
+			           console.log(textStatus, errorThrown);
+        			}
+				});
+			//}
+		});
+		
+		/* use $(document).on('click') to register click event for dynamically load element. 
+		   Ie : .link class elements are dynamically loaded. Can't use $(".link") to refer the element  */
+		$(document).on('click', '.link', function(e)
+		{
+			e.preventDefault();
+			var current = $(this);	
+			var div = $(this).attr('data-href');		
+			$.ajax(
+			{					
+				url: $(this).attr("href"),
+				success: function(response) 
+				{
+					$(".content").html(response);										
+					$("#mainMenu li a.active").removeClass("active");
+					$("#mainMenu li:nth-child(2) a").addClass("active");										
+					$('html, body').animate({scrollTop: $(div).offset().top},0);
+				},
+				error: function(jqXHR, textStatus, errorThrown) 
+				{
+				   console.log(textStatus, errorThrown);
+				}
+			});
+		})
+		/* Add the following line for Animate On Scroll (AOS) to function */
+		AOS.init({duration: 1200});
+	});	
+</script>
+</head>
+
+<body id="frontPage">
+	<div class="topBar">
+    <header>
+    <nav id="mainMenu">
+      <ul>
+        <li><a href="home.html"><i class="fas fa-home"> Home</i></a></li>
+        <li><a href="birds.html"><i class="fas fa-dove"> Protected Birds</i></a></li>
+        <li><a href="conservation.html"><i class="fas fa-globe-asia"> Conservation</i></a></li>
+        <li><a href="sanctuaries.html"><i class="fas fa-kiwi-bird"> Bird Sanctuaries </i></a></li>
+    </ul>
+    </nav>
+    </header>
+    </div>
+    <div class="content">        
+	</div>
+    <!-- rocket image to scroll to top 
+    Widget by AllBloggerTricks.com  -->
+    <div class="scroll-top">
+    <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgMzEuMDc2IDMxLjA3NiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzEuMDc2IDMxLjA3NjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0yMS41NDksMjAuMjI3di0zLjk0N2MwLTguODA2LTMuNzI1LTE0LjEyNS01LjI4My0xNS45NjRDMTYuMDk4LDAuMTE2LDE1Ljg1MSwwLjAwMiwxNS41OTEsMCAgICBjLTAuMjYxLTAuMDAxLTAuNTA4LDAuMTEyLTAuNjc5LDAuMzFjLTEuNTg0LDEuODM1LTUuMzg0LDcuMTU2LTUuMzg0LDE1Ljk3djMuOTQ4bC0wLjcyOSwwLjQ5MSAgICBjLTEuNDA1LDAuOTQ4LTIuMjQ4LDIuNTMzLTIuMjQ4LDQuMjI5djQuNzExYzAsMC4yNzksMC4xNTQsMC41MzcsMC40LDAuNjdjMC4yNDcsMC4xMzIsMC41NDYsMC4xMTcsMC43NzgtMC4wMzlsMi4zNjgtMS41NzcgICAgYzAuNjY1LTAuNDQyLDEuNDQ1LTAuNjc5LDIuMjQ0LTAuNjc5aDEuNzQxdjIuMjgzYzAsMC40MiwwLjM0LDAuNzYsMC43NTksMC43NmgxLjM5NGMwLjQxOSwwLDAuNzU5LTAuMzQsMC43NTktMC43NnYtMi4yODNoMS43NCAgICBjMC43OTksMCwxLjU4LDAuMjM1LDIuMjQ2LDAuNjhsMi4zNjYsMS41NzZjMC4yMzIsMC4xNTYsMC41MzEsMC4xNzEsMC43NzgsMC4wMzljMC4yNDYtMC4xMzMsMC40LTAuMzkxLDAuNC0wLjY3di00LjcxMSAgICBjMC0xLjY5NC0wLjg0NC0zLjI3OS0yLjI0OC00LjIyOUwyMS41NDksMjAuMjI3eiBNMTUuNTM5LDE0LjA0M2MtMS40NDYsMC0yLjYyLTEuMTczLTIuNjItMi42MTljMC0xLjQ0NywxLjE3NC0yLjYxOSwyLjYyLTIuNjE5ICAgIGMxLjQ0NSwwLDIuNjE5LDEuMTcyLDIuNjE5LDIuNjE5QzE4LjE1OCwxMi44NywxNi45ODQsMTQuMDQzLDE1LjUzOSwxNC4wNDN6IiBmaWxsPSIjMzMzMzMzIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+    <span class="flame"></span>
+    <span class="flame"></span>
+    <span class="flame"></span>
+    </div>     
+    <div class="footer">
+    	<div class="topDivider">
+        </div>
+        <div class="row">
+            Copyright &copy; 2021 All Rights Reserved by CK&trade;
+            <ul class="icon">
+                <li><a href="http://www.facebook.com" class="facebook icon"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="http://www.youtube.com" class="youtube icon"><i class="fab fa-youtube"></i></a></li>
+                <li><a href="http://www.twitter.com" class="twitter icon"><i class="fab fa-twitter"></i></a></li>
+            </ul>
+        </div>
+    </div>       
+</body>
+</html>
