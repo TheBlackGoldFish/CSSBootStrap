@@ -290,12 +290,12 @@ i:hover
 
 .row
 {
-	display:inline;
-	line-height:40px;
+	display:flex;		
 }
 
 .icon
 {
+	line-height:40px;
 	list-style-type:none;
 	float:right;		
 	margin: 0;
